@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bekas Training App</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary">
+        <div class="brand">
+          <span class="brand-mark">BT</span>
+          <div>
+            <strong>Bekas</strong>
+            <span>training app</span>
+          </div>
+        </div>
+        <nav class="nav-list">
+          <a href="#dashboard" class="active">Dashboard</a>
+          <a href="#plan">Plan</a>
+          <a href="#library">Library</a>
+          <a href="#analytics">Analytics</a>
+          <a href="#coach">Coach</a>
+        </nav>
+        <div class="profile-card">
+          <span class="eyebrow">Athlete profile</span>
+          <strong id="profileType">Hybrid beginner</strong>
+          <span id="profileGoal">Build routine</span>
+        </div>
+      </aside>
+
+      <main>
+        <section id="dashboard" class="hero">
+          <img src="data:image/jpeg;base64,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" alt="Running, yoga, Pilates, and mat training collage" />
+          <div class="hero-content">
+            <span class="eyebrow">Today</span>
+            <h1>Bekas training day is ready.</h1>
+            <p id="coachNudge">A balanced session keeps momentum high while protecting recovery.</p>
+            <div class="hero-actions">
+              <button id="completeMain" class="primary">Complete Session</button>
+              <button id="rebalancePlan" class="secondary">Rebalance</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="metric-grid" aria-label="Daily training metrics">
+          <article class="metric">
+            <span>Readiness</span>
+            <strong id="readinessScore">82</strong>
+            <small id="readinessLabel">Ready for moderate load</small>
+          </article>
+          <article class="metric">
+            <span>Training density</span>
+            <strong id="weeklyLoad">4.2h</strong>
+            <small id="densityLabel">1 workout / day</small>
+          </article>
+          <article class="metric">
+            <span>Habit streak</span>
+            <strong id="streakCount">6</strong>
+            <small>days consistent</small>
+          </article>
+          <article class="metric">
+            <span>Recovery</span>
+            <strong id="recoveryScore">76</strong>
+            <small id="recoveryLabel">Add evening mobility</small>
+          </article>
+        </section>
+
+        <section id="plan" class="section-grid">
+          <div class="panel planner">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">Adaptive plan</span>
+                <h2>Build this week</h2>
+              </div>
+              <button id="generatePlan" class="icon-button" aria-label="Generate plan">↻</button>
+            </div>
+            <div class="controls-grid">
+              <label>
+                Focus
+                <select id="focusInput">
+                  <option>Build routine</option>
+                  <option>Build endurance</option>
+                  <option>Improve speed</option>
+                  <option>Stress relief</option>
+                  <option>Race preparation</option>
+                </select>
+              </label>
+              <label>
+                Runs / week
+                <input id="runsInput" type="number" min="1" max="6" value="3" />
+              </label>
+              <label>
+                Yoga / week
+                <input id="yogaInput" type="number" min="0" max="7" value="2" />
+              </label>
+            </div>
+            <div id="weekPlan" class="week-plan"></div>
+          </div>
+
+          <div class="panel checkin">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">Wellness</span>
+                <h2>Daily check-in</h2>
+              </div>
+            </div>
+            <label>
+              Sleep quality
+              <input id="sleepInput" type="range" min="1" max="10" value="8" />
+            </label>
+            <label>
+              Stress level
+              <input id="stressInput" type="range" min="1" max="10" value="4" />
+            </label>
+            <label>
+              Energy
+              <input id="energyInput" type="range" min="1" max="10" value="7" />
+            </label>
+            <button id="saveCheckin" class="primary full">Update Readiness</button>
+            <div class="habit-list" id="habitList"></div>
+          </div>
+        </section>
+
+        <section id="library" class="panel">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">Workout library</span>
+              <h2>Integrated training modules</h2>
+            </div>
+            <div class="segmented" role="tablist" aria-label="Workout category">
+              <button class="active" data-filter="all">All</button>
+              <button data-filter="run">Run</button>
+              <button data-filter="yoga">Yoga</button>
+              <button data-filter="pilates">Pilates</button>
+              <button data-filter="walking">Walking</button>
+              <button data-filter="cardio">Cardio</button>
+              <button data-filter="strength">Strength</button>
+            </div>
+          </div>
+          <div id="workoutLibrary" class="library-grid"></div>
+        </section>
+
+        <section id="analytics" class="section-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">Progress</span>
+                <h2>Consistency trend</h2>
+              </div>
+            </div>
+            <div id="chart" class="chart" aria-label="Weekly consistency chart"></div>
+          </div>
+          <div id="coach" class="panel coach-panel">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">AI coach</span>
+                <h2>Ask for an adjustment</h2>
+              </div>
+            </div>
+            <div id="coachMessages" class="coach-messages"></div>
+            <form id="coachForm" class="coach-form">
+              <input id="coachInput" type="text" placeholder="Tell me how today feels..." />
+              <button class="primary" type="submit">Send</button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
