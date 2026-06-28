@@ -10,7 +10,7 @@
     <div class="app-shell">
       <aside class="sidebar" aria-label="Primary">
         <div class="brand">
-          <span class="brand-mark">BT</span>
+          <a class="profile-avatar-link" href="#profile" aria-label="Open Rebeka profile"><img src="./assets/profile-rebeka.png" alt="Rebeka profile photo" /></a>
           <div>
             <strong>Bekas</strong>
             <span>training app</span>
@@ -18,10 +18,15 @@
         </div>
         <nav class="nav-list">
           <a href="#dashboard" class="active">Dashboard</a>
+          <a href="#onboarding">Onboarding</a>
+          <a href="#profile">Profile</a>
+          <a href="#today">Today</a>
           <a href="#plan">Plan</a>
           <a href="#library">Library</a>
+          <a href="#videos">Videos</a>
           <a href="#analytics">Analytics</a>
           <a href="#coach">Coach</a>
+          <a class="web-preview-link" href="http://127.0.0.1:4175/#dashboard" target="_blank" rel="noreferrer">Web Preview</a>
         </nav>
         <div class="profile-card">
           <span class="eyebrow">Athlete profile</span>
@@ -31,102 +36,224 @@
       </aside>
 
       <main>
-        <section id="dashboard" class="hero">
-          <div class="hero-media" aria-label="Running and Pilates training photos">
-            <div class="hero-photo photo-run" role="img" aria-label="Outdoor mountain road run"></div>
-            <div class="hero-photo photo-pilates" role="img" aria-label="Mat Pilates practice"></div>
+        <section id="onboarding" class="onboarding-page page-section" data-page="onboarding">
+          <div class="onboarding-shell">
+            <div class="onboarding-top">
+              <button id="onboardingBack" class="onboarding-icon" type="button" aria-label="Back">‹</button>
+              <div class="onboarding-progress" aria-label="Onboarding progress"><span id="onboardingProgress"></span></div>
+              <button id="onboardingClose" class="onboarding-icon" type="button" aria-label="Close">×</button>
+            </div>
+            <div id="onboardingStep" class="onboarding-step"></div>
+            <button id="onboardingContinue" class="onboarding-continue" type="button">Continue</button>
+          </div>
+        </section>
+
+        <section id="dashboard" class="hero page-section" data-page="dashboard">
+          <div class="hero-media" aria-label="Running and yoga training photos">
+            <img src="./assets/header-run.jpg" alt="Mountain road running session" />
+            <img src="./assets/header-yoga.jpg" alt="Yoga flow with mountain view" />
           </div>
           <div class="hero-content">
-            <span class="eyebrow">Today</span>
-            <h1>Bekas training day is ready.</h1>
-            <p id="coachNudge">A balanced session keeps momentum high while protecting recovery.</p>
-            <div class="hero-actions">
-              <button id="completeMain" class="primary">Complete Session</button>
-              <button id="rebalancePlan" class="secondary">Rebalance</button>
-            </div>
+            <span class="eyebrow">Dashboard</span>
+            <h1 id="dashboardGreeting">Good morning, Rebeka.</h1>
+            <p id="coachNudge">Today's focus: Easy Run + Mobility</p>
           </div>
         </section>
 
-        <section class="metric-grid" aria-label="Daily training metrics">
-          <article class="metric">
-            <span>Readiness</span>
-            <strong id="readinessScore">82</strong>
-            <small id="readinessLabel">Ready for moderate load</small>
-          </article>
-          <article class="metric">
-            <span>Training density</span>
-            <strong id="weeklyLoad">4.2h</strong>
-            <small id="densityLabel">1 workout / day</small>
-          </article>
-          <article class="metric">
-            <span>Habit streak</span>
-            <strong id="streakCount">6</strong>
-            <small>days consistent</small>
-          </article>
-          <article class="metric">
-            <span>Recovery</span>
-            <strong id="recoveryScore">76</strong>
-            <small id="recoveryLabel">Add evening mobility</small>
-          </article>
-        </section>
-
-        <section id="plan" class="section-grid">
-          <div class="panel planner">
-            <div class="panel-header">
+        <section class="dashboard-board page-section" data-page="dashboard" aria-label="Dashboard overview">
+          <div class="panel dashboard-stickers">
+            <div class="panel-header compact-header">
               <div>
-                <span class="eyebrow">Adaptive plan</span>
-                <h2>Build this week</h2>
+                <span class="eyebrow">Overview</span>
+                <h2>Training snapshots</h2>
               </div>
-              <button id="generatePlan" class="icon-button" aria-label="Generate plan">↻</button>
             </div>
-            <div class="controls-grid">
-              <label>
-                Focus
-                <select id="focusInput">
-                  <option>Build routine</option>
-                  <option>Build endurance</option>
-                  <option>Improve speed</option>
-                  <option>Stress relief</option>
-                  <option>Race preparation</option>
-                </select>
-              </label>
-              <label>
-                Runs / week
-                <input id="runsInput" type="number" min="1" max="6" value="3" />
-              </label>
-              <label>
-                Yoga / week
-                <input id="yogaInput" type="number" min="0" max="7" value="2" />
-              </label>
-            </div>
-            <div id="weekPlan" class="week-plan"></div>
+            <div id="stickerGrid" class="sticker-grid dashboard-stat-grid"></div>
           </div>
 
-          <div class="panel checkin">
-            <div class="panel-header">
+          <div class="panel checkin dashboard-checkin">
+            <div class="panel-header compact-header">
               <div>
-                <span class="eyebrow">Wellness</span>
-                <h2>Daily check-in</h2>
+                <span class="eyebrow">Daily check-in</span>
+                <h2>Adjust today's readiness</h2>
               </div>
             </div>
             <label>
-              Sleep quality
+              <span class="checkin-label">Sleep quality <b id="sleepValue">8</b></span>
               <input id="sleepInput" type="range" min="1" max="10" value="8" />
             </label>
             <label>
-              Stress level
+              <span class="checkin-label">Stress level <b id="stressValue">4</b></span>
               <input id="stressInput" type="range" min="1" max="10" value="4" />
             </label>
             <label>
-              Energy
+              <span class="checkin-label">Energy <b id="energyValue">7</b></span>
               <input id="energyInput" type="range" min="1" max="10" value="7" />
             </label>
-            <button id="saveCheckin" class="primary full">Update Readiness</button>
-            <div class="habit-list" id="habitList"></div>
+            <label>
+              Hydration logged now (L)
+              <input id="hydrationInput" type="number" min="0" step="0.1" value="0.3" />
+            </label>
+            <button id="logHydration" class="secondary full" type="button">Add Hydration</button>
+            <button id="saveCheckin" class="primary full">Update Dashboard</button>
           </div>
         </section>
 
-        <section id="library" class="panel">
+        <section id="profile" class="profile-page page-section" data-page="profile">
+          <div class="profile-top panel">
+            <div class="profile-hero-actions">
+              <button class="icon-button" type="button" data-profile-back aria-label="Back">‹</button>
+              <button class="icon-button" type="button" aria-label="Gifts">□</button>
+            </div>
+            <img class="profile-photo" src="./assets/profile-rebeka.png" alt="Rebeka profile photo" />
+            <h2>Rebeka</h2>
+            <p>Joined Jun 2026 · Vienna, Austria</p>
+            <button class="primary profile-edit" type="button" data-profile-edit>Edit Profile</button>
+            <div class="profile-badges">
+              <span>Level 18</span>
+              <span>Consistency Champion</span>
+              <span>84 Day Streak</span>
+            </div>
+          </div>
+
+          <div class="profile-stats">
+            <article><strong>185</strong><span>Workouts</span></article>
+            <article><strong>2,184 km</strong><span>Distance</span></article>
+            <article><strong>352 h</strong><span>Training</span></article>
+            <article><strong>892</strong><span>Athlete Score</span></article>
+          </div>
+
+          <div class="profile-grid">
+            <div class="panel profile-section">
+              <span class="eyebrow">Athlete identity</span>
+              <div class="profile-list compact">
+                <div><span>Primary Goal</span><strong id="profilePrimaryGoal">Marathon</strong></div>
+                <div><span>Secondary Goal</span><strong id="profileSecondaryGoal">Build Strength</strong></div>
+                <div><span>Current Focus</span><strong id="profileCurrentFocus">Consistency</strong></div>
+                <div><span>Experience</span><strong id="profileExperience">Intermediate</strong></div>
+                <div><span>Training Days</span><strong id="profileTrainingDays">6 days/week</strong></div>
+                <div><span>Preferred Time</span><strong id="profilePreferredTime">Morning</strong></div>
+              </div>
+            </div>
+
+            <div class="panel profile-section">
+              <span class="eyebrow">Training DNA</span>
+              <div class="dna-bars">
+                <div><span>Runner</span><i style="width:72%"></i><b>72%</b></div>
+                <div><span>Yoga</span><i style="width:15%"></i><b>15%</b></div>
+                <div><span>Pilates</span><i style="width:8%"></i><b>8%</b></div>
+                <div><span>Strength</span><i style="width:5%"></i><b>5%</b></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-grid">
+            <div class="panel profile-section">
+              <span class="eyebrow">Personal bests</span>
+              <div class="profile-list compact">
+                <div><span>5 km</span><strong>20:12</strong></div>
+                <div><span>10 km</span><strong>43:55</strong></div>
+                <div><span>Half Marathon</span><strong>1:39:42</strong></div>
+                <div><span>Marathon</span><strong>3:32:17</strong></div>
+                <div><span>Longest Run</span><strong>34 km</strong></div>
+                <div><span>Highest Weekly Distance</span><strong>82 km</strong></div>
+              </div>
+            </div>
+
+            <div class="panel profile-section">
+              <span class="eyebrow">Achievements</span>
+              <div class="achievement-grid">
+                <span>First 5 km</span><span>First Half Marathon</span><span>100 km Month</span><span>50 Yoga Sessions</span><span>25 Pilates Classes</span><span>100 Strength Workouts</span><span class="locked">Marathon Finisher</span><span class="locked">365 Day Streak</span><span class="locked">500 Workouts</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel profile-section">
+            <span class="eyebrow">My stuff</span>
+            <div class="profile-menu">
+              <button type="button" data-profile-subpage="connected">Connected Apps & Devices</button>
+              <button type="button" data-profile-subpage="goals">Goals</button>
+              <button type="button" data-profile-subpage="workouts">Workout Settings</button>
+              <button type="button" data-profile-subpage="phone">Phone Recording</button>
+              <button type="button" data-profile-subpage="general">General</button>
+              <button type="button" data-profile-subpage="heart">Heart Rate Zones</button>
+            </div>
+          </div>
+
+          <div class="panel profile-section">
+            <span class="eyebrow">Navigation</span>
+            <div class="profile-menu small">
+              <button type="button">Notifications</button><button type="button">Units</button><button type="button">Privacy</button><button type="button">Theme</button><button type="button">Help</button><button type="button">Terms</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="edit-profile" class="profile-page page-section" data-page="edit-profile">
+          <div class="panel profile-editor">
+            <div class="profile-subheader"><button class="icon-button" type="button" data-profile-back>‹</button><h2>Edit Profile</h2></div>
+            <img class="profile-photo" src="./assets/profile-rebeka.png" alt="Rebeka profile photo" />
+            <label>Name<input value="Rebeka" /></label>
+            <label>Email<input value="rebekagosztom@gmail.com" /></label>
+            <label>Date of Birth<input value="03/14/2000" /></label>
+            <label>Gender<input value="Female" /></label>
+          </div>
+        </section>
+
+        <section id="today" class="section-grid today-layout page-section" data-page="today">
+          <div class="panel today-panel">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">Today</span>
+                <h2>Week calendar</h2>
+              </div>
+              <strong id="todayTitle" class="week-label">Week 3/15</strong>
+            </div>
+            <div id="todayCalendar" class="calendar-strip" aria-label="Choose day"></div>
+            <div id="todayWorkouts" class="today-workouts"></div>
+          </div>
+
+          <div class="panel today-side">
+            <div class="weather-card">
+              <div>
+                <span class="eyebrow">Live Weather</span>
+                <h2 id="weatherTemp">Connect weather</h2>
+                <p id="weatherDetail">Enter a city to show the real current condition.</p>
+              </div>
+              <span id="weatherIcon" class="weather-icon">--</span>
+            </div>
+            <div class="weather-settings">
+              <label>
+                City / location
+                <input id="weatherLocation" type="text" value="Vienna, Austria" />
+              </label>
+              <button id="refreshWeather" class="secondary full" type="button">Update Real Weather</button>
+              <small id="weatherStatus">Uses live Open-Meteo weather with no API key.</small>
+            </div>
+            <article class="ai-suggestion">
+              <span class="eyebrow">AI suggestion</span>
+              <p id="weatherSuggestion">Move harder running earlier and keep hydration close.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="plan" class="panel plan-page page-section" data-page="plan">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">Your plan</span>
+              <h2 id="planPageTitle">Hybrid Running Plan</h2>
+            </div>
+            <button id="generatePlan" class="icon-button" aria-label="Refresh plan">↻</button>
+          </div>
+          <div id="planSummary" class="plan-summary"></div>
+          <div class="plan-actions" aria-label="Plan management">
+            <button type="button" data-plan-action="overview">Plan Overview</button>
+            <button type="button" data-plan-action="rearrange">Rearrange Workouts</button>
+            <button type="button" data-plan-action="manage">Manage Plan</button>
+          </div>
+          <div id="planWeeks" class="week-overview"></div>
+        </section>
+
+        <section id="library" class="panel page-section" data-page="library">
           <div class="panel-header">
             <div>
               <span class="eyebrow">Workout library</span>
@@ -142,32 +269,74 @@
               <button data-filter="strength">Strength</button>
             </div>
           </div>
+          <figure class="section-photo library-photo">
+            <img src="./assets/training-library-collage.png" alt="Training library collage with running, yoga, Pilates, and strength" />
+          </figure>
           <div id="workoutLibrary" class="library-grid"></div>
         </section>
 
-        <section id="analytics" class="section-grid">
-          <div class="panel">
-            <div class="panel-header">
-              <div>
-                <span class="eyebrow">Progress</span>
-                <h2>Consistency trend</h2>
-              </div>
+        <section id="videos" class="panel video-page page-section" data-page="videos">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">Yoga + Pilates videos</span>
+              <h2>Upload or link workout videos</h2>
             </div>
-            <div id="chart" class="chart" aria-label="Weekly consistency chart"></div>
           </div>
-          <div id="coach" class="panel coach-panel">
-            <div class="panel-header">
-              <div>
-                <span class="eyebrow">AI coach</span>
-                <h2>Ask for an adjustment</h2>
-              </div>
+          <form id="videoForm" class="video-form">
+            <label>
+              Title
+              <input id="videoTitle" type="text" placeholder="Morning Pilates flow" />
+            </label>
+            <label>
+              Category
+              <select id="videoCategory">
+                <option>Yoga</option>
+                <option>Pilates</option>
+                <option>Mobility</option>
+                <option>Recovery</option>
+              </select>
+            </label>
+            <label>
+              YouTube link
+              <input id="videoUrl" type="url" placeholder="https://youtube.com/watch?v=..." />
+            </label>
+            <label>
+              Upload video file
+              <input id="videoFile" type="file" accept="video/*" />
+            </label>
+            <button class="primary" type="submit">Add Video</button>
+          </form>
+          <div id="videoLibrary" class="video-grid"></div>
+        </section>
+
+        <section id="analytics" class="panel analytics-page page-section" data-page="analytics">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">Progress</span>
+              <h2>Consistency trend</h2>
             </div>
-            <div id="coachMessages" class="coach-messages"></div>
-            <form id="coachForm" class="coach-form">
-              <input id="coachInput" type="text" placeholder="Tell me how today feels..." />
-              <button class="primary" type="submit">Send</button>
-            </form>
           </div>
+          <figure class="section-photo analytics-photo">
+            <img src="./assets/analytics-core.jpg" alt="Pilates core hold on mat" />
+          </figure>
+          <div id="chart" class="chart" aria-label="Weekly consistency chart"></div>
+        </section>
+
+        <section id="coach" class="panel coach-panel page-section" data-page="coach">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">AI coach</span>
+              <h2>AI coach chat</h2>
+            </div>
+          </div>
+          <figure class="section-photo coach-photo">
+            <img src="./assets/coach-pilates.jpg" alt="Side lying Pilates leg lift" />
+          </figure>
+          <div id="coachMessages" class="coach-messages"></div>
+          <form id="coachForm" class="coach-form">
+            <input id="coachInput" type="text" placeholder="Tell me how today feels..." />
+            <button class="primary" type="submit">Send</button>
+          </form>
         </section>
       </main>
     </div>
